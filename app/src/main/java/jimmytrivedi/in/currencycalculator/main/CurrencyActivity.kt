@@ -1,12 +1,13 @@
 package jimmytrivedi.`in`.currencycalculator.main
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import androidx.activity.viewModels
-import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dagger.hilt.android.AndroidEntryPoint
+import jimmytrivedi.`in`.currencycalculator.R
 import jimmytrivedi.`in`.currencycalculator.base.BaseActivity
 import jimmytrivedi.`in`.currencycalculator.databinding.ActivityCurrencyBinding
 import kotlinx.coroutines.launch
@@ -36,5 +37,16 @@ class CurrencyActivity : BaseActivity() {
     override fun getBundleParameters(bundle: Bundle) {}
 
     private fun initViews() {
+        setSpinner()
+    }
+
+    private fun setSpinner() {
+        val currencies = resources.getStringArray(R.array.currency_array)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, currencies)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        binding.spinnerFromCurrency.adapter = adapter
+        binding.spinnerToCurrency.adapter = adapter
+
     }
 }

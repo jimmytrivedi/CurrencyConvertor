@@ -1,8 +1,8 @@
 package jimmytrivedi.`in`.currencycalculator.global
 
-sealed class CurrencyConstant {
+sealed class AppConstant {
 
-    class Default : CurrencyConstant() {
+    class Default : AppConstant() {
         companion object {
 
         }
