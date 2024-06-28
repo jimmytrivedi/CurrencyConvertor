@@ -14,13 +14,17 @@ import javax.inject.Inject
 @HiltViewModel
 class CurrencyActivityViewModel @Inject constructor(private val repository: IExchangeRateRepository): BaseViewModel() {
 
+    private val _loadingStatus = MutableSharedFlow <Resource<ExchangeRateResponse>>()
+    val loadingStatus = _loadingStatus.asSharedFlow()
+
     private val _exchangeRateData = MutableSharedFlow <Resource<ExchangeRateResponse>>()
     val exchangeRateData = _exchangeRateData.asSharedFlow()
 
     fun fetchExchangeRateData() {
         viewModelScope.launch {
-            _exchangeRateData.emit(Resource.loading(true))
+            _loadingStatus.emit(Resource.loading(true))
             repository.getExchangeRateData().collect {
+                _loadingStatus.emit(Resource.loading(false))
                 _exchangeRateData.emit(it)
             }
         }

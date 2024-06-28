@@ -1,5 +1,9 @@
 package jimmytrivedi.`in`.currencycalculator.networking.data.exchangerate
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Rates(
     var AED: Double?,
     var AFN: Double?,
@@ -12,16 +16,16 @@ data class Rates(
     var AWG: Double?,
     var AZN: Double?,
     var BAM: Double?,
-    var BBD: Int?,
+    var BBD: Double?,
     var BDT: Double?,
     var BGN: Double?,
     var BHD: Double?,
     var BIF: Double?,
-    var BMD: Int?,
+    var BMD: Double?,
     var BND: Double?,
     var BOB: Double?,
     var BRL: Double?,
-    var BSD: Int?,
+    var BSD: Double?,
     var BTC: Double?,
     var BTN: Double?,
     var BWP: Double?,
@@ -36,7 +40,7 @@ data class Rates(
     var CNY: Double?,
     var COP: Double?,
     var CRC: Double?,
-    var CUC: Int?,
+    var CUC: Double?,
     var CUP: Double?,
     var CVE: Double?,
     var CZK: Double?,
@@ -45,7 +49,7 @@ data class Rates(
     var DOP: Double?,
     var DZD: Double?,
     var EGP: Double?,
-    var ERN: Int?,
+    var ERN: Double?,
     var ETB: Double?,
     var EUR: Double?,
     var FJD: Double?,
@@ -79,7 +83,7 @@ data class Rates(
     var KGS: Double?,
     var KHR: Double?,
     var KMF: Double?,
-    var KPW: Int?,
+    var KPW: Double?,
     var KRW: Double?,
     var KWD: Double?,
     var KYD: Double?,
@@ -95,7 +99,7 @@ data class Rates(
     var MGA: Double?,
     var MKD: Double?,
     var MMK: Double?,
-    var MNT: Int?,
+    var MNT: Double?,
     var MOP: Double?,
     var MRU: Double?,
     var MUR: Double?,
@@ -111,7 +115,7 @@ data class Rates(
     var NPR: Double?,
     var NZD: Double?,
     var OMR: Double?,
-    var PAB: Int?,
+    var PAB: Double?,
     var PEN: Double?,
     var PGK: Double?,
     var PHP: Double?,
@@ -126,7 +130,7 @@ data class Rates(
     var SAR: Double?,
     var SBD: Double?,
     var SCR: Double?,
-    var SDG: Int?,
+    var SDG: Double?,
     var SEK: Double?,
     var SGD: Double?,
     var SHP: Double?,
@@ -147,10 +151,10 @@ data class Rates(
     var TRY: Double?,
     var TTD: Double?,
     var TWD: Double?,
-    var TZS: Int?,
+    var TZS: Double?,
     var UAH: Double?,
     var UGX: Double?,
-    var USD: Int?,
+    var USD: Double?,
     var UYU: Double?,
     var UZS: Double?,
     var VES: Double?,
@@ -169,5 +173,5 @@ data class Rates(
     var YER: Double?,
     var ZAR: Double?,
     var ZMW: Double?,
-    var ZWL: Int?
-)
+    var ZWL: Double?
+) : Parcelable

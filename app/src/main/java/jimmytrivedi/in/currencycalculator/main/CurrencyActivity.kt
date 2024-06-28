@@ -22,14 +22,28 @@ class CurrencyActivity : BaseActivity() {
     override fun init() {
         binding = ActivityCurrencyBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        viewModel.fetchExchangeRateData()
         initViews()
-
     }
 
     override fun initObservers() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.loadingStatus.collect {
+                    if (it.state) {
+                        binding.progressBar.show()
+                    } else {
+                        binding.progressBar.hide()
+                    }
+                }
+            }
+        }
 
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.exchangeRateData.collect {
+                    showLog(it.status)
+                }
             }
         }
     }

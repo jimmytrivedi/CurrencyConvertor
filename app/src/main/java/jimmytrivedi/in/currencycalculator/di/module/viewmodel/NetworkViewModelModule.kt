@@ -18,6 +18,6 @@ object NetworkViewModelModule {
      * This service will be for entire user module
      */
     @Provides
-    fun provideUserRetrofitService(retrofit: Retrofit): IExchangeRateAPIService = retrofit.create(IExchangeRateAPIService::class.java)
+    fun provideExchangeRateRetrofitService(retrofit: Retrofit): IExchangeRateAPIService = retrofit.create(IExchangeRateAPIService::class.java)
 
 }

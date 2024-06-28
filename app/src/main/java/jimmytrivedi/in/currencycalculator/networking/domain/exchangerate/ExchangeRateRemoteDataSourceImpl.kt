@@ -18,6 +18,6 @@ class ExchangeRateRemoteDataSourceImpl @Inject constructor(
 ) : BaseDataSource(context), IExchangeRateRemoteDataSource {
 
     override fun getExchageRateResponse(): Flow<Resource<ExchangeRateResponse>> = getResult(requestTag = NetworkConstant.APIParsingTag.EXCHANGE_RATE) {
-        apiService.getExchangeRateData(NetworkConstant.APIParsingTag.EXCHANGE_RATE)
+        apiService.getExchangeRateData(requestTag = NetworkConstant.APIParsingTag.EXCHANGE_RATE)
     }
 }

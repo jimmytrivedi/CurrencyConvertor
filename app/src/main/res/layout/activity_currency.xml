@@ -7,6 +7,17 @@
     android:padding="@dimen/_16dp"
     tools:context=".main.CurrencyActivity">
 
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="0dp"
+        style="?android:attr/progressBarStyleInverse"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/editTextAmount"
         android:layout_width="@dimen/_0dp"

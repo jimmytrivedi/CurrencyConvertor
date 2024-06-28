@@ -39,6 +39,7 @@ android {
     kapt {
         correctErrorTypes true
     }
+
     lint {
         abortOnError false
         disable 'RestrictedApi'
@@ -61,13 +62,11 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
-            ext.enableStability = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         release {
             minifyEnabled true
-            ext.enableStability = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             shrinkResources true
         }
@@ -75,12 +74,16 @@ android {
 
     productFlavors {
         development {
+            buildConfigField "String", "EXCHANGE_RATE_API_KEY", getExchangeRateApiKeyDev
+
             resValue "string", "app_name", getAppNameDevelopment
 
             signingConfig signingConfigs.production
         }
 
         production {
+            buildConfigField "String", "EXCHANGE_RATE_API_KEY", getExchangeRateApiKeyProd
+
             resValue "string", "app_name", getAppNameProduction
 
             signingConfig signingConfigs.production

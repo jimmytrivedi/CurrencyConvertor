@@ -22,5 +22,5 @@ interface IDataSourceViewModelModule {
      */
     @Binds
     @RemoteDataSource
-    fun bindUserRemoteDataSource(exchangeRateRemoteDataSourceImpl: ExchangeRateRemoteDataSourceImpl): IExchangeRateRemoteDataSource
+    fun bindExchangeRateRemoteDataSource(exchangeRateRemoteDataSourceImpl: ExchangeRateRemoteDataSourceImpl): IExchangeRateRemoteDataSource
 }

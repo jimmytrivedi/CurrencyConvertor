@@ -1,11 +1,13 @@
 package jimmytrivedi.`in`.currencycalculator.networking.global
 
+import jimmytrivedi.`in`.currencycalculator.BuildConfig
+
 sealed class NetworkConstant {
 
     class Default : NetworkConstant() {
         companion object {
             const val BASE_URL = "https://openexchangerates.org/api/"
-            const val EXCHANGE_RATE_API_KEY = "" //todo make flavor setup and add both dev and prod key
+            const val EXCHANGE_RATE_API_KEY = BuildConfig.EXCHANGE_RATE_API_KEY
         }
     }
 
@@ -13,6 +15,7 @@ sealed class NetworkConstant {
         companion object {
             const val LATEST_JSON = "latest.json"
             const val CURRENCIES_JSON = "currencies.json"
+            const val APP_ID = "app_id"
         }
     }
 

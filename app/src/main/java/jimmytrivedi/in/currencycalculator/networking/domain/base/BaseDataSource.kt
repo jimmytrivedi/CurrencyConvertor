@@ -81,23 +81,4 @@ abstract class BaseDataSource(private val context: Context) {
         }
 
     }
-
-    /**
-     * This function will make it separate success and failure cases as well as handle to exceptions
-     */
-    protected fun <T> getDBResult(call: suspend () -> T): Flow<Resource<T>> = flow {
-        try {
-            Log.d( "BaseDataSource","getDBResult: first line")
-            val response = call()
-            Log.d( "BaseDataSource","getDBResult: $response")
-            if (response != null) {
-                emit(Resource.success(response, "Success", 200, false))
-            } else {
-                emit(error(message = context.getString(R.string.there_seems_to_be_a_technical_issue), code = NetworkConstant.NetworkValues.DEFAULT_ERROR_CODE))
-            }
-        } catch (e: Exception) {
-            Log.d( "BaseDataSource", "getDBResult: " + e.printStackTrace() + "\n" + e.cause)
-            emit(error(message = context.getString(R.string.there_seems_to_be_a_technical_issue), code = NetworkConstant.NetworkValues.DEFAULT_ERROR_CODE))
-        }
-    }
 }
