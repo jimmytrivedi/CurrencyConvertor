@@ -30,5 +30,5 @@ dependencyResolutionManagement {
 
 
 /** --------------------------- include {...} --------------------------- **/
-rootProject.name = "Currency Calculator"
+rootProject.name = "Currency Convertor"
 include ':app'

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Currency Calculator</string>
+    <string name="app_name">Currency Convertor</string>
     <string name="convert_currency">Convert your Currency</string>
     <string name="invalid_input">Invalid input</string>
     <string name="enter_amount_error">Please enter the valid amount</string>

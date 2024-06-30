@@ -60,7 +60,15 @@
 
 
 ##--------------------------------------Keep Project classes---------------------------------------##
--keep public class jimmytrivedi.in.currencycalculator.R
+-keep public class jimmytrivedi.in.currencyconvertor.R
+-keep public class jimmytrivedi.in.currencyconvertor.networking.data.**
+-keep class jimmytrivedi.in.currencyconvertor.networking.data.** { *; }
+-keepclassmembers class com.yourpackage.model.** { *; }
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepattributes Signature
+-keepattributes *Annotation*
+
 
 
 ##--------------------------------------------Keep {...}------------------------------------------##
