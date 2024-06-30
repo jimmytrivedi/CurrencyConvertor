@@ -7,6 +7,7 @@ import android.net.NetworkCapabilities.TRANSPORT_ETHERNET
 import android.net.NetworkCapabilities.TRANSPORT_WIFI
 import android.util.Log
 import jimmytrivedi.`in`.currencycalculator.R
+import jimmytrivedi.`in`.currencycalculator.global.LogUtils
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -21,7 +22,7 @@ object NetworkUtils {
                 }
             }
         } catch (e: JSONException) {
-            Log.d("NetworkUtils","getErrorMessage: " + e.printStackTrace() + "\n" + e.cause)
+            LogUtils.d("NetworkUtils getErrorMessage: " + e.printStackTrace() + "\n" + e.cause)
         }
 
         return context.getString(R.string.there_seems_to_be_a_technical_issue)

@@ -3,6 +3,7 @@ package jimmytrivedi.`in`.currencycalculator.networking.domain.base
 import android.content.Context
 import android.util.Log
 import jimmytrivedi.`in`.currencycalculator.R
+import jimmytrivedi.`in`.currencycalculator.global.LogUtils
 import jimmytrivedi.`in`.currencycalculator.networking.global.NetworkConstant
 import jimmytrivedi.`in`.currencycalculator.networking.global.NetworkUtils
 import jimmytrivedi.`in`.currencycalculator.networking.global.Resource
@@ -34,7 +35,7 @@ abstract class BaseDataSource(private val context: Context) {
                     errorBody = response.errorBody()?.string()
                 }
             } catch (e: Exception) {
-                Log.d("BaseDataSource", "traceException: " + e.printStackTrace() + "\n" + e.cause)
+                LogUtils.d("BaseDataSource traceException: " + e.printStackTrace() + "\n" + e.cause)
             }
 
 
@@ -52,7 +53,7 @@ abstract class BaseDataSource(private val context: Context) {
                 }
             }
         } catch (e: Exception) {
-            Log.d( "BaseDataSource", "exception: " + e.printStackTrace() + "\n" + e.cause)
+            LogUtils.d( "BaseDataSource exception: " + e.printStackTrace() + "\n" + e.cause)
             if (!NetworkUtils.isNetworkAvailable(context) || e is SocketTimeoutException || e is UnknownHostException) {
                 emit(error(message = context.getString(R.string.could_not_connect_to_network), code = NetworkConstant.NetworkValues.INTERNET_ERROR_CODE))
             } else {
@@ -68,15 +69,15 @@ abstract class BaseDataSource(private val context: Context) {
     private fun <T> getResponseType(requestTag: String, response: Response<T>?) {
         response?.let { mResponse->
             if (mResponse.raw().networkResponse != null) {
-                Log.d( "BaseDataSource",  "ResponseType: NetworkResponse: $requestTag")
+                LogUtils.d( "BaseDataSource ResponseType: NetworkResponse: $requestTag")
             }
 
             if (mResponse.raw().cacheResponse != null) {
-                Log.d( "BaseDataSource","ResponseType: CacheResponse: $requestTag")
+                LogUtils.d( "BaseDataSource esponseType: CacheResponse: $requestTag")
             }
 
             if (mResponse.raw().cacheResponse != null && mResponse.raw().networkResponse == null) {
-                Log.d( "BaseDataSource","ResponseType: Concrete CacheResponse: $requestTag")
+                LogUtils.d( "BaseDataSource ResponseType: Concrete CacheResponse: $requestTag")
             }
         }
 

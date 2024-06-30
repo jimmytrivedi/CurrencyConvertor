@@ -42,9 +42,7 @@ abstract class BaseActivity: AppCompatActivity() {
 
 
     /** ----------------------------------- public functions ----------------------------------- **/
-    fun showLog(message: Any?) {
-        Log.d("Result", message.toString())
-    }
+
 
     /** ----------------------------------- private functions ----------------------------------- **/
 }

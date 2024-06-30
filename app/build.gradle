@@ -74,7 +74,8 @@ android {
 
     productFlavors {
         development {
-            buildConfigField "String", "EXCHANGE_RATE_API_KEY", getExchangeRateApiKeyDev
+            buildConfigField "String", "EXCHANGE_RATE_API_KEY", getExchangeRateApiKey
+            buildConfigField 'boolean', 'LOG_VALUE', getLogValueDev
 
             resValue "string", "app_name", getAppNameDevelopment
 
@@ -82,7 +83,8 @@ android {
         }
 
         production {
-            buildConfigField "String", "EXCHANGE_RATE_API_KEY", getExchangeRateApiKeyProd
+            buildConfigField "String", "EXCHANGE_RATE_API_KEY", getExchangeRateApiKey
+            buildConfigField 'boolean', 'LOG_VALUE', getLogValueProd
 
             resValue "string", "app_name", getAppNameProduction
 

@@ -2,6 +2,7 @@ package jimmytrivedi.`in`.currencycalculator.networking.domain.exchangerate
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
+import jimmytrivedi.`in`.currencycalculator.networking.data.exchangerate.ExchangeRate
 import jimmytrivedi.`in`.currencycalculator.networking.data.exchangerate.ExchangeRateResponse
 import jimmytrivedi.`in`.currencycalculator.networking.domain.base.BaseDataSource
 import jimmytrivedi.`in`.currencycalculator.networking.global.NetworkConstant
@@ -17,7 +18,11 @@ class ExchangeRateRemoteDataSourceImpl @Inject constructor(
     private val apiService: IExchangeRateAPIService
 ) : BaseDataSource(context), IExchangeRateRemoteDataSource {
 
-    override fun getExchageRateResponse(): Flow<Resource<ExchangeRateResponse>> = getResult(requestTag = NetworkConstant.APIParsingTag.EXCHANGE_RATE) {
-        apiService.getExchangeRateData(requestTag = NetworkConstant.APIParsingTag.EXCHANGE_RATE)
+    override fun getExchageRateResponse(exchangeRate: ExchangeRate): Flow<Resource<ExchangeRateResponse>> = getResult(requestTag = NetworkConstant.APIParsingTag.EXCHANGE_RATE) {
+        apiService.getExchangeRateData(
+            requestTag = NetworkConstant.APIParsingTag.EXCHANGE_RATE,
+            baseCurrency = exchangeRate.baseCurrency,
+            targetCurrency = exchangeRate.targetCurrency
+        )
     }
 }

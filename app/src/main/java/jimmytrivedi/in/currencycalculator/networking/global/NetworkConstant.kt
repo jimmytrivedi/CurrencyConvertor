@@ -6,16 +6,17 @@ sealed class NetworkConstant {
 
     class Default : NetworkConstant() {
         companion object {
-            const val BASE_URL = "https://openexchangerates.org/api/"
+            const val BASE_URL = "https://api.freecurrencyapi.com/v1/"
             const val EXCHANGE_RATE_API_KEY = BuildConfig.EXCHANGE_RATE_API_KEY
         }
     }
 
     class APIEndPoint : NetworkConstant() {
         companion object {
-            const val LATEST_JSON = "latest.json"
-            const val CURRENCIES_JSON = "currencies.json"
-            const val APP_ID = "app_id"
+            const val LATEST_DATA = "latest"
+            const val API_KEY = "apikey"
+            const val BASE_CURRENCY = "base_currency"
+            const val TARGET_CURRENCY = "currencies"
         }
     }
 

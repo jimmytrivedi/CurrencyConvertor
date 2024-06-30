@@ -3,6 +3,7 @@ package jimmytrivedi.`in`.currencycalculator.main
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jimmytrivedi.`in`.currencycalculator.base.BaseViewModel
+import jimmytrivedi.`in`.currencycalculator.networking.data.exchangerate.ExchangeRate
 import jimmytrivedi.`in`.currencycalculator.networking.data.exchangerate.ExchangeRateResponse
 import jimmytrivedi.`in`.currencycalculator.networking.domain.exchangerate.IExchangeRateRepository
 import jimmytrivedi.`in`.currencycalculator.networking.global.Resource
@@ -20,10 +21,10 @@ class CurrencyActivityViewModel @Inject constructor(private val repository: IExc
     private val _exchangeRateData = MutableSharedFlow <Resource<ExchangeRateResponse>>()
     val exchangeRateData = _exchangeRateData.asSharedFlow()
 
-    fun fetchExchangeRateData() {
+    fun fetchExchangeRateData(exchangeRate: ExchangeRate) {
         viewModelScope.launch {
             _loadingStatus.emit(Resource.loading(true))
-            repository.getExchangeRateData().collect {
+            repository.getExchangeRateData(exchangeRate).collect {
                 _loadingStatus.emit(Resource.loading(false))
                 _exchangeRateData.emit(it)
             }
