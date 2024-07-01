@@ -1,4 +1,4 @@
-package jimmytrivedi.`in`.currencyconvertor.networking.global
+package jimmytrivedi.`in`.currencyconvertor.domain.remote.global
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -6,7 +6,7 @@ import android.net.NetworkCapabilities.TRANSPORT_CELLULAR
 import android.net.NetworkCapabilities.TRANSPORT_ETHERNET
 import android.net.NetworkCapabilities.TRANSPORT_WIFI
 import jimmytrivedi.`in`.currencyconvertor.R
-import jimmytrivedi.`in`.currencyconvertor.global.LogUtils
+import jimmytrivedi.`in`.currencyconvertor.global.utility.LogUtils
 import org.json.JSONException
 import org.json.JSONObject
 

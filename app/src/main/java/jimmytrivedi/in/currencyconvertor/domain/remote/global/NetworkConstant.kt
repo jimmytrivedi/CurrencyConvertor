@@ -1,4 +1,4 @@
-package jimmytrivedi.`in`.currencyconvertor.networking.global
+package jimmytrivedi.`in`.currencyconvertor.domain.remote.global
 
 import jimmytrivedi.`in`.currencyconvertor.BuildConfig
 

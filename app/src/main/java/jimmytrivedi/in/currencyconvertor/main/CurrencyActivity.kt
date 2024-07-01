@@ -12,8 +12,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import jimmytrivedi.`in`.currencyconvertor.R
 import jimmytrivedi.`in`.currencyconvertor.base.BaseActivity
 import jimmytrivedi.`in`.currencyconvertor.databinding.ActivityCurrencyBinding
-import jimmytrivedi.`in`.currencyconvertor.global.AppUtils
-import jimmytrivedi.`in`.currencyconvertor.networking.data.exchangerate.ExchangeRate
+import jimmytrivedi.`in`.currencyconvertor.domain.remote.data.exchangerate.ExchangeRate
+import jimmytrivedi.`in`.currencyconvertor.global.utility.AppConstant
+import jimmytrivedi.`in`.currencyconvertor.global.utility.AppUtils
+import jimmytrivedi.`in`.currencyconvertor.global.utility.LogUtils
 import kotlinx.coroutines.launch
 
 
@@ -21,7 +23,7 @@ import kotlinx.coroutines.launch
 class CurrencyActivity : BaseActivity() {
     private lateinit var binding: ActivityCurrencyBinding
     private val viewModel: CurrencyActivityViewModel by viewModels()
-
+    private var getBaseCurrencyPos: Int = -1
 
     override fun init() {
         binding = ActivityCurrencyBinding.inflate(layoutInflater)
@@ -53,6 +55,17 @@ class CurrencyActivity : BaseActivity() {
                 }
             }
         }
+
+        lifecycleScope.launch {
+            viewModel.baseCurrencyData.collect {
+                if (it >= 0) {
+                    // Load saved default currency if exists
+                    getBaseCurrencyPos = it
+                    binding.baseSpinner.setText(binding.baseSpinner.adapter.getItem(it).toString(), false)
+                    binding.defaultCurrency.isChecked = true
+                }
+            }
+        }
     }
 
     override fun getBundleParameters(bundle: Bundle) {}
@@ -61,6 +74,7 @@ class CurrencyActivity : BaseActivity() {
         binding.progressBar.hide()
         setSpinner()
         setListener()
+        viewModel.getBaseCurrencyData()
     }
 
     private fun setListener() {
@@ -85,7 +99,7 @@ class CurrencyActivity : BaseActivity() {
                 exchangeRate.baseCurrency = binding.baseCurrencyLayout.editText?.text.toString()
                 exchangeRate.targetCurrency = binding.targetCurrencyLayout.editText?.text.toString()
 
-                viewModel.fetchExchangeRateData(exchangeRate)
+                viewModel.getExchangeRateData(exchangeRate)
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -95,6 +109,13 @@ class CurrencyActivity : BaseActivity() {
         // Spinner base currency listener
         binding.baseCurrencyLayout.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
+                // Uncheck base currency
+                if (getSelectedPosition() != getBaseCurrencyPos) {
+                    binding.defaultCurrency.isChecked = false
+                } else {
+                    binding.defaultCurrency.isChecked = true
+                }
+
                 if (!AppUtils.checkValidation(binding.amount.editText?.text)) {
                     return
                 }
@@ -108,7 +129,7 @@ class CurrencyActivity : BaseActivity() {
                 exchangeRate.baseCurrency = s.toString()
                 exchangeRate.targetCurrency = binding.targetCurrencyLayout.editText?.text.toString()
 
-                viewModel.fetchExchangeRateData(exchangeRate)
+                viewModel.getExchangeRateData(exchangeRate)
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -131,7 +152,7 @@ class CurrencyActivity : BaseActivity() {
                 exchangeRate.baseCurrency = binding.baseCurrencyLayout.editText?.text.toString()
                 exchangeRate.targetCurrency = s.toString()
 
-                viewModel.fetchExchangeRateData(exchangeRate)
+                viewModel.getExchangeRateData(exchangeRate)
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -145,6 +166,13 @@ class CurrencyActivity : BaseActivity() {
             binding.baseCurrencyLayout.editText?.setText(targetCurrency)
             binding.targetCurrencyLayout.editText?.setText(baseCurrency)
         }
+
+        // Default base currency check listener
+        binding.defaultCurrency.setOnCheckedChangeListener { compoundButton, isChecked ->
+            if (isChecked) {
+                viewModel.setBaseCurrencyData(getSelectedPosition())
+            }
+        }
     }
 
     private fun setSpinner() {
@@ -153,5 +181,13 @@ class CurrencyActivity : BaseActivity() {
 
         binding.baseSpinner.setAdapter(adapter)
         binding.targetSpinner.setAdapter(adapter)
+
+    }
+
+    // Function to get the position of the selected item
+    private fun getSelectedPosition(): Int {
+        val currencies = resources.getStringArray(R.array.currency_array)
+        val selectedItem = binding.baseSpinner.text.toString()
+        return currencies.indexOf(selectedItem)
     }
 }

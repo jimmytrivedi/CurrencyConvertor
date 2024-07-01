@@ -5,8 +5,11 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import jimmytrivedi.`in`.currencyconvertor.networking.domain.exchangerate.ExchangeRateRemoteDataSourceImpl
-import jimmytrivedi.`in`.currencyconvertor.networking.domain.exchangerate.IExchangeRateRemoteDataSource
+import jimmytrivedi.`in`.currencyconvertor.di.qualifier.LocalDataSource
+import jimmytrivedi.`in`.currencyconvertor.domain.local.ExchangeRateLocalDataSourceImpl
+import jimmytrivedi.`in`.currencyconvertor.domain.local.IExchangeRateLocalDataSource
+import jimmytrivedi.`in`.currencyconvertor.domain.remote.domain.exchangerate.ExchangeRateRemoteDataSourceImpl
+import jimmytrivedi.`in`.currencyconvertor.domain.remote.domain.exchangerate.IExchangeRateRemoteDataSource
 
 
 /**
@@ -17,10 +20,18 @@ import jimmytrivedi.`in`.currencyconvertor.networking.domain.exchangerate.IExcha
 interface IDataSourceViewModelModule {
 
     /**
-     * This Remote data source will be for entire user module
+     * This Remote data source will be for entire exchange rate module
      * We've specifically annotated with @RemoteDataSource because UserDataSource obj can be provided with @LocalDataSource as well
      */
     @Binds
     @RemoteDataSource
     fun bindExchangeRateRemoteDataSource(exchangeRateRemoteDataSourceImpl: ExchangeRateRemoteDataSourceImpl): IExchangeRateRemoteDataSource
+
+    /**
+     * This Local data source will be for entire exchange rate module
+     * We've specifically annotated with @RemoteDataSource because UserDataSource obj can be provided with @LocalDataSource as well
+     */
+    @Binds
+    @LocalDataSource
+    fun bindExchangeRateLocalDataSource(exchangeRateLocalDataSourceImpl: ExchangeRateLocalDataSourceImpl): IExchangeRateLocalDataSource
 }

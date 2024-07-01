@@ -1,4 +1,4 @@
-package jimmytrivedi.`in`.currencyconvertor.networking.domain.base
+package jimmytrivedi.`in`.currencyconvertor.domain.remote.domain.base
 
 import android.content.Context
 

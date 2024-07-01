@@ -1,4 +1,4 @@
-package jimmytrivedi.`in`.currencyconvertor.global
+package jimmytrivedi.`in`.currencyconvertor.global.utility
 
 import android.text.Editable
 import java.util.regex.Pattern

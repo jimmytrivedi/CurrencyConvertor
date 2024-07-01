@@ -1,11 +1,11 @@
-package jimmytrivedi.`in`.currencyconvertor.networking.domain.base
+package jimmytrivedi.`in`.currencyconvertor.domain.remote.domain.base
 
 import android.content.Context
 import jimmytrivedi.`in`.currencyconvertor.R
-import jimmytrivedi.`in`.currencyconvertor.global.LogUtils
-import jimmytrivedi.`in`.currencyconvertor.networking.global.NetworkConstant
-import jimmytrivedi.`in`.currencyconvertor.networking.global.NetworkUtils
-import jimmytrivedi.`in`.currencyconvertor.networking.global.Resource
+import jimmytrivedi.`in`.currencyconvertor.global.utility.LogUtils
+import jimmytrivedi.`in`.currencyconvertor.domain.remote.global.NetworkConstant
+import jimmytrivedi.`in`.currencyconvertor.domain.remote.global.NetworkUtils
+import jimmytrivedi.`in`.currencyconvertor.domain.remote.global.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.Response

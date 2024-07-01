@@ -7,7 +7,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import jimmytrivedi.`in`.currencyconvertor.BuildConfig
-import jimmytrivedi.`in`.currencyconvertor.networking.global.NetworkConstant
+import jimmytrivedi.`in`.currencyconvertor.domain.remote.global.NetworkConstant
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

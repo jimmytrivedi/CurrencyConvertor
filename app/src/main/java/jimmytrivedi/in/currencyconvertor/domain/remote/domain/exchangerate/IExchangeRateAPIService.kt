@@ -1,7 +1,7 @@
-package jimmytrivedi.`in`.currencyconvertor.networking.domain.exchangerate
+package jimmytrivedi.`in`.currencyconvertor.domain.remote.domain.exchangerate
 
-import jimmytrivedi.`in`.currencyconvertor.networking.data.exchangerate.ExchangeRateResponse
-import jimmytrivedi.`in`.currencyconvertor.networking.global.NetworkConstant
+import jimmytrivedi.`in`.currencyconvertor.domain.remote.data.exchangerate.ExchangeRateResponse
+import jimmytrivedi.`in`.currencyconvertor.domain.remote.global.NetworkConstant
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

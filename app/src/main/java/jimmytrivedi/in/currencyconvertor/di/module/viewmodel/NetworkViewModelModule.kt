@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import jimmytrivedi.`in`.currencyconvertor.networking.domain.exchangerate.IExchangeRateAPIService
+import jimmytrivedi.`in`.currencyconvertor.domain.remote.domain.exchangerate.IExchangeRateAPIService
 import retrofit2.Retrofit
 
 /**
@@ -18,6 +18,7 @@ object NetworkViewModelModule {
      * This service will be for entire user module
      */
     @Provides
-    fun provideExchangeRateRetrofitService(retrofit: Retrofit): IExchangeRateAPIService = retrofit.create(IExchangeRateAPIService::class.java)
+    fun provideExchangeRateRetrofitService(retrofit: Retrofit): IExchangeRateAPIService = retrofit.create(
+        IExchangeRateAPIService::class.java)
 
 }

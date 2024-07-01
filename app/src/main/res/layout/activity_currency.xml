@@ -114,7 +114,19 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textview.MaterialTextView
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/default_currency"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_8dp"
+        android:text="@string/set_default"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/base_currency_layout" />
+
+
+  <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textViewResult"
         android:layout_width="@dimen/_0dp"
         android:layout_height="wrap_content"
@@ -123,6 +135,6 @@
         android:textSize="@dimen/_18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/base_currency_layout" />
+        app:layout_constraintTop_toBottomOf="@id/default_currency" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

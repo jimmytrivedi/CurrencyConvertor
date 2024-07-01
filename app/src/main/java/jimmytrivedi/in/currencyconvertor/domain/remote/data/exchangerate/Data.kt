@@ -1,4 +1,4 @@
-package jimmytrivedi.`in`.currencyconvertor.networking.data.exchangerate
+package jimmytrivedi.`in`.currencyconvertor.domain.remote.data.exchangerate
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

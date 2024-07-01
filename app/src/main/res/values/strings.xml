@@ -10,6 +10,7 @@
     <string name="result_will_be_displayed_here_with_colon">Converted amount: %1$s</string>
     <string name="there_seems_to_be_a_technical_issue">There seems to be a technical glitch. Please try again.</string>
     <string name="could_not_connect_to_network">Could not connect to the network. Please check and try again.</string>
+    <string name="set_default">Set as default</string>
 
     <string-array name="currency_array">
         <item>AUD</item>

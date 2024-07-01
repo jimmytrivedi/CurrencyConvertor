@@ -1,4 +1,4 @@
-package jimmytrivedi.`in`.currencyconvertor.global
+package jimmytrivedi.`in`.currencyconvertor.global.utility
 
 import android.util.Log
 import jimmytrivedi.`in`.currencyconvertor.BuildConfig

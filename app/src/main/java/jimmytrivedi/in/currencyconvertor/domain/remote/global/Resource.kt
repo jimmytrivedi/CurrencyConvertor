@@ -1,4 +1,4 @@
-package jimmytrivedi.`in`.currencyconvertor.networking.global
+package jimmytrivedi.`in`.currencyconvertor.domain.remote.global
 
 data class Resource<out T>(val status: Status, val data: T?, val message: String?, val code: Int, val state: Boolean) {
 
