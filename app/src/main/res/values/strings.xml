@@ -4,6 +4,7 @@
     <string name="invalid_input">Invalid input</string>
     <string name="enter_amount_error">Please enter the valid amount</string>
     <string name="select_currency">Select currency</string>
+    <string name="amount">Amount</string>
     <string name="enter_amount">Enter amount</string>
     <string name="convert">Convert</string>
     <string name="result_will_be_displayed_here_without_colon">Converted amount:</string>
@@ -11,6 +12,18 @@
     <string name="there_seems_to_be_a_technical_issue">There seems to be a technical glitch. Please try again.</string>
     <string name="could_not_connect_to_network">Could not connect to the network. Please check and try again.</string>
     <string name="set_default">Set as default</string>
+    <string name="menu_history">History</string>
+    <string name="conversion_history">Conversion History</string>
+    <string name="converted_amount">Result</string>
+    <string name="base_currency">Base currency</string>
+    <string name="timestamp">Timestamp</string>
+    <string name="target_currency">Target currency</string>
+
+    <string name="base_currency_with_colon">Base currency: %1$s</string>
+    <string name="target_currency_with_colon">Target currency: %1$s</string>
+    <string name="converted_amount_with_colon">Result: %1$s</string>
+    <string name="timestamp_with_colon">Timestamp: %1$s</string>
+    <string name="amount_with_colon">Amount: %1$s</string>
 
     <string-array name="currency_array">
         <item>AUD</item>

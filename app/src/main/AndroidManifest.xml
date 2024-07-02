@@ -25,7 +25,7 @@
 
         <!-- .................................ACTIVITY................................. -->
         <activity
-            android:name=".main.CurrencyActivity"
+            android:name=".app.main.CurrencyActivity"
             android:exported="true"
             android:theme="@style/Theme.CurrencyConvertor">
             <intent-filter>

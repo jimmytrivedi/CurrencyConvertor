@@ -1,21 +1,25 @@
-package jimmytrivedi.`in`.currencyconvertor.main
+package jimmytrivedi.`in`.currencyconvertor.app.main
 
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import jimmytrivedi.`in`.currencyconvertor.R
-import jimmytrivedi.`in`.currencyconvertor.base.BaseActivity
+import jimmytrivedi.`in`.currencyconvertor.app.base.BaseActivity
+import jimmytrivedi.`in`.currencyconvertor.app.history.ConversionHistoryFragment
 import jimmytrivedi.`in`.currencyconvertor.databinding.ActivityCurrencyBinding
+import jimmytrivedi.`in`.currencyconvertor.domain.local.data.ConversionHistoryEntity
 import jimmytrivedi.`in`.currencyconvertor.domain.remote.data.exchangerate.ExchangeRate
 import jimmytrivedi.`in`.currencyconvertor.global.utility.AppConstant
 import jimmytrivedi.`in`.currencyconvertor.global.utility.AppUtils
-import jimmytrivedi.`in`.currencyconvertor.global.utility.LogUtils
 import kotlinx.coroutines.launch
 
 
@@ -50,6 +54,15 @@ class CurrencyActivity : BaseActivity() {
                     it.data?.data?.result?.let {
                         if (it.isNotEmpty()) {
                             binding.textViewResult.text = getString(R.string.result_will_be_displayed_here_with_colon, it)
+
+                            // Storing offline
+                            val entity = ConversionHistoryEntity(
+                                baseCurrency = binding.baseCurrencyLayout.editText?.text.toString(),
+                                targetCurrency = binding.targetCurrencyLayout.editText?.text.toString(),
+                                amount = binding.amount.editText?.text.toString(),
+                                result = it
+                            )
+                            viewModel.insertConversionHistoryData(entity)
                         }
                     }
                 }
@@ -57,12 +70,14 @@ class CurrencyActivity : BaseActivity() {
         }
 
         lifecycleScope.launch {
-            viewModel.baseCurrencyData.collect {
-                if (it >= 0) {
-                    // Load saved default currency if exists
-                    getBaseCurrencyPos = it
-                    binding.baseSpinner.setText(binding.baseSpinner.adapter.getItem(it).toString(), false)
-                    binding.defaultCurrency.isChecked = true
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.baseCurrencyData.collect {
+                    if (it >= 0) {
+                        // Load saved default currency if exists
+                        getBaseCurrencyPos = it
+                        binding.baseSpinner.setText(binding.baseSpinner.adapter.getItem(it).toString(), false)
+                        binding.defaultCurrency.isChecked = true
+                    }
                 }
             }
         }
@@ -72,9 +87,23 @@ class CurrencyActivity : BaseActivity() {
 
     private fun initViews() {
         binding.progressBar.hide()
+        setToolbar()
         setSpinner()
         setListener()
         viewModel.getBaseCurrencyData()
+    }
+
+    private fun setFragment() {
+        supportFragmentManager.fragments.forEach { _ -> supportFragmentManager.popBackStack() }
+        val fragment = ConversionHistoryFragment.newInstance(null)
+        fragmentTransaction(binding.fragmentContainer.id, fragment, true, AppConstant.Animation.RIGHT_TO_LEFT)
+    }
+
+    private fun setToolbar() {
+        binding.toolbar.let {
+            setSupportActionBar(it)
+            it.overflowIcon?.setTint(ContextCompat.getColor(this, R.color.color_white))
+        }
     }
 
     private fun setListener() {
@@ -189,5 +218,21 @@ class CurrencyActivity : BaseActivity() {
         val currencies = resources.getStringArray(R.array.currency_array)
         val selectedItem = binding.baseSpinner.text.toString()
         return currencies.indexOf(selectedItem)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_currency, menu);
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        if (id == R.id.action_history) {
+            setFragment()
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }

@@ -61,8 +61,14 @@
 
 ##--------------------------------------Keep Project classes---------------------------------------##
 -keep public class jimmytrivedi.in.currencyconvertor.R
--keep public class jimmytrivedi.in.currencyconvertor.remote.data.**
--keep class jimmytrivedi.in.currencyconvertor.remote.data.** { *; }
+-keep public class jimmytrivedi.in.currencyconvertor.domain.remote.data.**
+-keep class jimmytrivedi.in.currencyconvertor.domain.remote.data.** { *; }
+
+# To keep RoomDb entity classes
+-keep public class jimmytrivedi.in.currencyconvertor.domain.local.data.**
+-keep class jimmytrivedi.in.currencyconvertor.domain.local.data.** { *; }
+
+
 -keepclassmembers class com.yourpackage.model.** { *; }
 -dontwarn retrofit2.**
 -keep class retrofit2.** { *; }

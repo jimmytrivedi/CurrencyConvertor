@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Base Currency -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvBaseCurrency"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="wrap_content"
+            tools:text="@string/base_currency"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <!-- Target Currency -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTargetCurrency"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="wrap_content"
+            tools:text="@string/target_currency"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <!-- Amount -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvAmount"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="wrap_content"
+            tools:text="@string/amount"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvBaseCurrency" />
+
+        <!-- Converted Amount -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvConvertedAmount"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="wrap_content"
+            tools:text="@string/converted_amount"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/tvTargetCurrency"
+            />
+
+        <!-- Timestamp -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTimestamp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2dp"
+            tools:text="@string/timestamp"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvConvertedAmount"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <!-- Separator -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_2dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@+id/tvTimestamp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <!-- Guideline to divide layout -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

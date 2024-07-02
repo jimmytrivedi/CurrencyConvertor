@@ -8,8 +8,8 @@ import dagger.hilt.android.components.ViewModelComponent
 import jimmytrivedi.`in`.currencyconvertor.di.qualifier.LocalDataSource
 import jimmytrivedi.`in`.currencyconvertor.domain.local.ExchangeRateLocalDataSourceImpl
 import jimmytrivedi.`in`.currencyconvertor.domain.local.IExchangeRateLocalDataSource
-import jimmytrivedi.`in`.currencyconvertor.domain.remote.domain.exchangerate.ExchangeRateRemoteDataSourceImpl
-import jimmytrivedi.`in`.currencyconvertor.domain.remote.domain.exchangerate.IExchangeRateRemoteDataSource
+import jimmytrivedi.`in`.currencyconvertor.domain.remote.networking.exchangerate.ExchangeRateRemoteDataSourceImpl
+import jimmytrivedi.`in`.currencyconvertor.domain.remote.networking.exchangerate.IExchangeRateRemoteDataSource
 
 
 /**

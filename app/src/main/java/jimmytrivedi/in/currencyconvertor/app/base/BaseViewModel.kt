@@ -1,4 +1,4 @@
-package jimmytrivedi.`in`.currencyconvertor.base
+package jimmytrivedi.`in`.currencyconvertor.app.base
 
 import androidx.lifecycle.ViewModel
 

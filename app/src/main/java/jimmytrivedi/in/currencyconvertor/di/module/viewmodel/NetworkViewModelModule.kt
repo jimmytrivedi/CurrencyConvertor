@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import jimmytrivedi.`in`.currencyconvertor.domain.remote.domain.exchangerate.IExchangeRateAPIService
+import jimmytrivedi.`in`.currencyconvertor.domain.remote.networking.exchangerate.IExchangeRateAPIService
 import retrofit2.Retrofit
 
 /**

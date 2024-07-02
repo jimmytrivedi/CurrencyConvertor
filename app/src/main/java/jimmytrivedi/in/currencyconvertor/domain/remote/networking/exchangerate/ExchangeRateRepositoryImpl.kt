@@ -1,16 +1,16 @@
-package jimmytrivedi.`in`.currencyconvertor.domain.remote.domain.exchangerate
+package jimmytrivedi.`in`.currencyconvertor.domain.remote.networking.exchangerate
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
 import jimmytrivedi.`in`.currencyconvertor.di.qualifier.LocalDataSource
 import jimmytrivedi.`in`.currencyconvertor.di.qualifier.RemoteDataSource
 import jimmytrivedi.`in`.currencyconvertor.domain.local.IExchangeRateLocalDataSource
-import jimmytrivedi.`in`.currencyconvertor.global.sharedpreference.IPreferencesHelper
+import jimmytrivedi.`in`.currencyconvertor.domain.local.data.ConversionHistoryEntity
 import jimmytrivedi.`in`.currencyconvertor.global.utility.LogUtils
 import jimmytrivedi.`in`.currencyconvertor.domain.remote.data.exchangerate.Data
 import jimmytrivedi.`in`.currencyconvertor.domain.remote.data.exchangerate.ExchangeRate
 import jimmytrivedi.`in`.currencyconvertor.domain.remote.data.exchangerate.ExchangeRateResponse
-import jimmytrivedi.`in`.currencyconvertor.domain.remote.domain.base.BaseRepository
+import jimmytrivedi.`in`.currencyconvertor.domain.remote.networking.base.BaseRepository
 import jimmytrivedi.`in`.currencyconvertor.domain.remote.global.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -59,6 +59,18 @@ class ExchangeRateRepositoryImpl @Inject constructor(
 
     override fun getUserBaseCurrency(): Flow<Int> = flow {
         localDataSource.getUserBaseCurrency().collect {
+            emit(it)
+        }
+    }
+
+    override fun insertConversionHistory(entity: ConversionHistoryEntity): Flow<Resource<Long?>>  = flow{
+        localDataSource.insertConversionHistory(entity).collect {
+            emit(it)
+        }
+    }
+
+    override fun getAllConversionHistory(): Flow<Resource<List<ConversionHistoryEntity>?>>  = flow{
+        localDataSource.getAllConversionHistory().collect() {
             emit(it)
         }
     }

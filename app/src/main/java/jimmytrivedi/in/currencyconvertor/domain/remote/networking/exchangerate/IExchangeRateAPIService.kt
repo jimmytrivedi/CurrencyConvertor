@@ -1,4 +1,4 @@
-package jimmytrivedi.`in`.currencyconvertor.domain.remote.domain.exchangerate
+package jimmytrivedi.`in`.currencyconvertor.domain.remote.networking.exchangerate
 
 import jimmytrivedi.`in`.currencyconvertor.domain.remote.data.exchangerate.ExchangeRateResponse
 import jimmytrivedi.`in`.currencyconvertor.domain.remote.global.NetworkConstant

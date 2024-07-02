@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id 'androidx.room'
 }
 
 android {
@@ -32,6 +33,7 @@ android {
 
     buildFeatures {
         viewBinding true
+        dataBinding true
         buildConfig true    // To use custom BuildConfig fields
     }
 
@@ -43,6 +45,11 @@ android {
     lint {
         abortOnError false
         disable 'RestrictedApi'
+    }
+
+    // Room database schema export path
+    room {
+        schemaDirectory "$projectDir/schemas"
     }
 
     packagingOptions {
@@ -74,7 +81,7 @@ android {
 
     productFlavors {
         development {
-            buildConfigField "String", "EXCHANGE_RATE_API_KEY", getExchangeRateApiKey
+            buildConfigField "String", "EXCHANGE_RATE_API_KEY", getExchangeRateApiKeyDev
             buildConfigField 'boolean', 'LOG_VALUE', getLogValueDev
 
             resValue "string", "app_name", getAppNameDevelopment
@@ -83,7 +90,7 @@ android {
         }
 
         production {
-            buildConfigField "String", "EXCHANGE_RATE_API_KEY", getExchangeRateApiKey
+            buildConfigField "String", "EXCHANGE_RATE_API_KEY", getExchangeRateApiKeyProd
             buildConfigField 'boolean', 'LOG_VALUE', getLogValueProd
 
             resValue "string", "app_name", getAppNameProduction
@@ -107,6 +114,7 @@ dependencies {
     def materialVersion = '1.11.0'
     def okHttpBomVersion = '4.12.0'
     def retrofitVersion = '2.9.0'
+    def roomDbVersion = '2.6.1'
     def vectorDrawableVersion = '1.1.0'
 
 
@@ -130,6 +138,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-process:$lifecycleVersion"
+
+    // Room Database
+    implementation "androidx.room:room-ktx:$roomDbVersion"
+    implementation "androidx.room:room-runtime:$roomDbVersion"
+    kapt "androidx.room:room-compiler:$roomDbVersion"
 
 
 
