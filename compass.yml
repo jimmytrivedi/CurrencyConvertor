@@ -1,0 +1,14 @@
+name: CurrencyConvertor
+id: ari:cloud:compass:e0855f33-60c6-435f-81a9-da64c34a26ba:component/f3bc85a1-f26c-463a-89ab-de252edd0ccf/9b74b126-9fb5-4340-988d-9d65fd2ea637
+description: A Currency Converter app that allows users to convert an amount from one currency to another.
+configVersion: 1
+typeId: SERVICE
+fields:
+  tier: 4
+links: []
+relationships:
+  DEPENDS_ON: []
+labels:
+  - language:kotlin
+  - source:github
+customFields: null
